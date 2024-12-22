@@ -4,7 +4,7 @@ namespace KeyLogger
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             using var keyTracker = new KeyTracker();
             using var fileWriter = File.CreateText("log.txt");
@@ -25,14 +25,16 @@ namespace KeyLogger
 
             Console.WriteLine("Press 0 to exit.");
 
-            while (!completed)
-            {
-                if (Console.KeyAvailable)
+            await Task.Run(() => {
+                while (!completed)
                 {
-                    var keyInfo = Console.ReadKey(true);
-                    keyTracker.Track(keyInfo);
+                    if (Console.KeyAvailable)
+                    {
+                        var keyInfo = Console.ReadKey(true);
+                        keyTracker.Track(keyInfo);
+                    }
                 }
-            }
+            });
         }
     }
 }
