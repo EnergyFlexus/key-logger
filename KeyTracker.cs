@@ -9,7 +9,7 @@ namespace KeyLogger
 
     public class KeyTracker : IDisposable
     {
-        public ISubject<KeyEvent> KeySubject { get; set; }
+        public ISubject<KeyEvent> KeySubject { get; }
         private bool _isCompleted;
 
         public KeyTracker()
